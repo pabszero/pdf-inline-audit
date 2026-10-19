@@ -1,0 +1,792 @@
+{
+  "schema_version": 1,
+  "tool_version": "0.1.0",
+  "pypdf_version": "6.21.1",
+  "limits": {
+    "max_file_bytes": 52428800,
+    "max_pages": 2000,
+    "max_images": 10000,
+    "max_form_depth": 32,
+    "max_form_invocations": 5000
+  },
+  "timeout_seconds_per_file": 10,
+  "measurement_notes": [
+    "Sizes are parser-retained encoded inline payloads, not exact original byte spans.",
+    "Sample sizes are metadata-derived estimates with byte-aligned scanlines, not decoded measurements.",
+    "No threshold is a proposed policy or a PDF conformance verdict.",
+    "Unique definitions use per-page top-level streams and document-wide Form references plus operation index; repeated Form placements counted separately.",
+    "Only page content and invoked Form XObjects are traversed; annotation appearances, patterns and Type3 glyph programs are excluded.",
+    "Partial, skipped, encrypted, errored and timed-out inputs remain explicit in the report."
+  ],
+  "summary": {
+    "file_status_counts": {
+      "ok": 62,
+      "encrypted": 9
+    },
+    "unique_inline_definitions": 1,
+    "inline_invocations": 1,
+    "parsed_encoded_payload_bytes": {
+      "count": 1,
+      "minimum": 51,
+      "maximum": 51,
+      "p50_nearest_rank": 51,
+      "p95_nearest_rank": 51,
+      "greater_than_4096": 0,
+      "greater_than_8192": 0
+    },
+    "estimated_packed_sample_bytes": {
+      "count": 1,
+      "minimum": 768,
+      "maximum": 768,
+      "p50_nearest_rank": 768,
+      "p95_nearest_rank": 768,
+      "greater_than_4096": 0,
+      "greater_than_8192": 0
+    },
+    "unknown_sample_estimates": 0
+  },
+  "files": [
+    {
+      "status": "ok",
+      "file_bytes": 112246,
+      "sha256": "c621f5136783216a2011c128a3d23ce1e4390c2a2f246ceb67f8901c1c1b0f96",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/attachment.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 63014,
+      "sha256": "057fa11250616292f87ffbca0a9a24c0482f7a476f77de2158ef673412442715",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/AutoCad_Diagram.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 3015,
+      "sha256": "3b9ea19601ea4935b9f974dd9fd3fe161083adc7a30e69977f51452f59708a20",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/AutoCad_Simple.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 5395,
+      "sha256": "9fdeec463c1b46c3a764bc5464eb1cf0874e0f55a2a99b330ee31e77a7bd2d89",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/box.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 1081,
+      "sha256": "cba2cf014d447ac0f234b1a9f93e74f39dab5d467381f48dc7af6f2e1d35d9ad",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/bytes.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 17871,
+      "sha256": "b8c47a71996c1fb10c65367cb5a7e1fbfe257e016fac348c18813e51531a4431",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/commented-xmp.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 13389,
+      "sha256": "73925c3472ff65c041c1c12ba106fd3e366c58110658aa9ac18cc20e2d823f27",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/commented.pdf"
+    },
+    {
+      "status": "encrypted",
+      "file_bytes": 12351,
+      "sha256": "b844a4425264d77bdad0f1584e0e967d47ab7ca4878cb2d573f5661d07e1e6e9",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "password_required"
+      ],
+      "source": "resources/crazyones-encrypted-256.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 11448,
+      "sha256": "9c59fa59b3e5ac73f8fa894a11bd17f8c92030dcf6d91924f133f8887456b3bc",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/crazyones.pdf"
+    },
+    {
+      "status": "encrypted",
+      "file_bytes": 7714,
+      "sha256": "2e4c31ab565ec17b83cb27d2fea3e0af11c35d4f25d00239b285ead353aa5fb6",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "password_required"
+      ],
+      "source": "resources/encrypted-file.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 13696,
+      "sha256": "338dc8e82430d3fe7927d529d389969beff69323a402a080fa81ddd3ce678eee",
+      "pages_total": 3,
+      "pages_scanned": 3,
+      "images": [],
+      "errors": [],
+      "source": "resources/encrypted_doc_no_id.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 15445,
+      "sha256": "6cae9391e37b942fbf61685ad603806514940c4af64f4611ec79651b20052202",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r2-empty-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 15448,
+      "sha256": "60987129fa1599aa14205e600fb6d583db58a101bf6715591e10f099a8fbe303",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r2-owner-password.pdf"
+    },
+    {
+      "status": "encrypted",
+      "file_bytes": 15450,
+      "sha256": "da696a2d69841e9a6ccd07823ebd9f4f6276ae03802ea26800531ae3041815a2",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "password_required"
+      ],
+      "source": "resources/encryption/r2-user-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 15451,
+      "sha256": "c519fef79688ba8b853d33087f883a5320902deea7a1e2ba776245ec98d15296",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r3-empty-password.pdf"
+    },
+    {
+      "status": "encrypted",
+      "file_bytes": 15451,
+      "sha256": "5b1bdc0e8d9994e503ec6887775d743c222933e2a9253d94571b74a6edb438d8",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "password_required"
+      ],
+      "source": "resources/encryption/r3-user-password.pdf"
+    },
+    {
+      "status": "encrypted",
+      "file_bytes": 16395,
+      "sha256": "26eafc7f9ddbc5d87a2e522ef37a430121f32f4fca5015ee32f8da167527e91d",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "password_required"
+      ],
+      "source": "resources/encryption/r4-aes-user-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 15373,
+      "sha256": "d25c2b36582bb56e6a2eb7ab7eb50f0d7e37f026f34a4f4ca1c37f668b6a98db",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r4-aes-v2-no-key-length.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 15540,
+      "sha256": "26bc009957639957d7fd9b49f17e123deb60bfca8617c5b0a3f6de25eef30e34",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r4-owner-password.pdf"
+    },
+    {
+      "status": "encrypted",
+      "file_bytes": 15540,
+      "sha256": "55991f72562d2026854d0513da8cf9688db31010053b92715037248683b99a6d",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "password_required"
+      ],
+      "source": "resources/encryption/r4-user-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 16709,
+      "sha256": "c3912034dff56b49de02e3e83861e04cdf86f73273ac2a956183bb7b7b4a92b1",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r5-empty-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 16709,
+      "sha256": "d84c096a019eef57468dc25daeb7a7c617b7d2fdac9c2638c4b07bd88e68a42d",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r5-owner-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 16709,
+      "sha256": "e36ad94829bbdb8634a3d5a41f8e4e555ffde6bac9ab966b8cefef4ae51368e0",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r5-user-password.pdf"
+    },
+    {
+      "status": "encrypted",
+      "file_bytes": 16709,
+      "sha256": "c792732c38f8b4d449133b8336519b17c14b5d4142a2c2204f4e20c565716e50",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "password_required"
+      ],
+      "source": "resources/encryption/r6-both-passwords.pdf"
+    },
+    {
+      "status": "encrypted",
+      "file_bytes": 19506,
+      "sha256": "cb4d3df758d80e2d10a83be172c5a6ef027cc37ca83d6585f79c6ab005603e0d",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "password_required"
+      ],
+      "source": "resources/encryption/r6-cleartext-metadata.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 16709,
+      "sha256": "ec9f1792e85a2dcad4d76c46505b87f62fe9e2bbbf167e1d5386b1d0576df468",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r6-empty-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 16709,
+      "sha256": "89e45c197f42ce7159f1485e0841d8716a51e1375f4eab53068961c6f10c0724",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r6-owner-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 16709,
+      "sha256": "440f63996cdda90f55f94532d5986066baf2939d301010dd4a4b5f2d6509de42",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/r6-user-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 15049,
+      "sha256": "72f3e7124c9d82980d7ab24d069005da147cc17bf8b28299da9ef7831dcb6e90",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/encryption/unencrypted.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 197932,
+      "sha256": "70fc2da549a8232d4f7c2323f2f99f242bbd34261e4977527484df319fff8eb2",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/example.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 3321024,
+      "sha256": "ab3d8b96117ba0cf65f03c09c4478fca3dbd8cca1d4ae1d7e8552a76acc91267",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/fontsampler.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 20788,
+      "sha256": "4a729f0d5a8665fe0c5e3a1d814f51d50d3a5c10beebcf8fd78c6cc624d08265",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/form.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 22327,
+      "sha256": "721943816dfa9c02ca496e620cb16c9b24d0efb8e63967bbcb6b0f3079875399",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/form_acrobatReader.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 21255,
+      "sha256": "c8ec415fbd931ed699737c5891d5d8896fd98d13e904171cb698d4da9a4263bf",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/form_evince.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 38004,
+      "sha256": "0a1d151d19c878a78509352e7adf5b0b145ec51c4e726ed64afb3e92a6df29bc",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/FormTestFromOo.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 360285,
+      "sha256": "738c3bd4d56f3ffa5b88861c8c7b6b5c87ceee292fb9e6e8fa729c5f10288667",
+      "pages_total": 19,
+      "pages_scanned": 19,
+      "images": [],
+      "errors": [],
+      "source": "resources/GeoBase_NHNC1_Data_Model_UML_EN.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 36335,
+      "sha256": "5637e838b1406ebb3baf520c6c39bece90bff1f3a7d2a65ac4e2801bf53f3be3",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/git.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 29344,
+      "sha256": "e503d5a539607090cd3049f03b59d1d0e9221bfbd8c7df571ae9965170eea42f",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/hello-world.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 2848,
+      "sha256": "99c687865a8c81b11fe2b6be84b4aaf47bf785556d07274debf9bc1e0807ed2f",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/imagemagick-ASCII85Decode.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 1880,
+      "sha256": "cf6f94b533dc28974961fd62a67ebfc722224a0be8a4f0c4c91b26a522d5f70d",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/imagemagick-CCITTFaxDecode.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 16012,
+      "sha256": "0f2076573bfed1107300a2383b88bbbbc2b85a57f06b3ff478a0faa7ded57b4e",
+      "pages_total": 6,
+      "pages_scanned": 6,
+      "images": [],
+      "errors": [],
+      "source": "resources/imagemagick-images.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 2678,
+      "sha256": "ee7ce5f301920761371b0a2537634c39b9a8cd2ab578dee4c17056da297628d8",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/imagemagick-lzw.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 127878,
+      "sha256": "d32136872da0ee462f685026a8ff5da21fde5776c4d53fc361cbf75dd62fb82f",
+      "pages_total": 5,
+      "pages_scanned": 5,
+      "images": [],
+      "errors": [],
+      "source": "resources/indirect-rotation.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 4618,
+      "sha256": "15a799ac8d348ebb4160e4ad18d0b526f9ec5fa528d22b1188268fa0ccccefd8",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/inkscape-abc.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 1039,
+      "sha256": "a6a95aecff6d00dc2fad80d468b73ef2276c06b940ee4c52380fcb21fa651598",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/issue-297.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 122438,
+      "sha256": "4b520440a1c6dbaf6ad2a7488d17c71a8a32a2828ba8343b07189d1cd7835926",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/issue-301.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 7753,
+      "sha256": "758b85a5c9cbb7f1f5a6cd0ebdba746f361ccdeb231026762b25160f24a21abf",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/issue-3850-1bit-indexed-flate.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 7988082,
+      "sha256": "4e06e1d09e4ea95a26227a5c13ddde11ab86f4d979a4ec3c70c416b2ac0c4271",
+      "pages_total": 137,
+      "pages_scanned": 137,
+      "images": [],
+      "errors": [],
+      "source": "resources/issue-604.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 144348,
+      "sha256": "e93598d0edf661cd4ff52618dccc5f005a31ab3c294644d2dd0e035688c7d8fc",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/issue-914-xmp-data.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 100898,
+      "sha256": "b65ead3923590619dff1f91c3a07302f38c53598b3031aec619042c206257c22",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/jpeg.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 92120,
+      "sha256": "7bd881e253d531d1a8d979ae5fa1dac9e0d0a16588c5748a3d8ac4bbf98d6cfe",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/labeled-edges-center-image.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 34186,
+      "sha256": "9105eeef8c8cafdb141b7edd768a5e08adffe320d1d4f89e1a7112a2b37d1c57",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/libreoffice-form.pdf"
+    },
+    {
+      "status": "encrypted",
+      "file_bytes": 12783,
+      "sha256": "3e333bff0196d0c5320f40cdd1b7a3abd21b316de79de3c0f9083accdaef9358",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "password_required"
+      ],
+      "source": "resources/libreoffice-writer-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 13294,
+      "sha256": "1a08da9504b63fdb5aee764f1d33e7a9fdb3c6b7ed20ac715dacb81b43109760",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/metadata.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 101011,
+      "sha256": "32f17a1fe71002eb02a64b752ac770e2934aba9f63f7762a239625726ef50775",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/missing_info.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 29344,
+      "sha256": "e503d5a539607090cd3049f03b59d1d0e9221bfbd8c7df571ae9965170eea42f",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/multilang.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 79232,
+      "sha256": "f535e9f9c7f4cd494143566cbdca7790c114848df63eb599e570bfbe73b417c1",
+      "pages_total": 4,
+      "pages_scanned": 4,
+      "images": [],
+      "errors": [],
+      "source": "resources/outline-without-title.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 71605,
+      "sha256": "c486aa96c548e249997bd992f8527fa96dbb7b155dc3e954474f192091f23fd8",
+      "pages_total": 4,
+      "pages_scanned": 4,
+      "images": [],
+      "errors": [],
+      "source": "resources/outlines-with-invalid-destinations.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 27712,
+      "sha256": "fc6265298caafffeee9dd2d7f3ae2e53ab9f61ec0561369429d442f731d339da",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/pdflatex-forms.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 48722,
+      "sha256": "17b5a4dac75613b82749c7538fc93991a385a5d419cc9832fdba24c1726a031a",
+      "pages_total": 4,
+      "pages_scanned": 4,
+      "images": [],
+      "errors": [],
+      "source": "resources/pdflatex-outline.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 1605,
+      "sha256": "49879923bca6ee6fc7b98ff40a92509cd41682d206a4009e97e7f34087add693",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [
+        {
+          "stream": "page:1",
+          "operation_index": 7,
+          "first_page": 1,
+          "invocations": 1,
+          "parsed_encoded_payload_bytes": 51,
+          "estimated_packed_sample_bytes": 768,
+          "estimate_unknown_reason": null,
+          "filters": [
+            "/A85",
+            "/Fl"
+          ]
+        }
+      ],
+      "errors": [],
+      "source": "resources/reportlab-inline-image.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 1376,
+      "sha256": "1e889f2317f2ab6582a35d25cd23661a1ff9a77491b5e24a84d4150d062ff66f",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/Sample_Td-matrix.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 217857,
+      "sha256": "1823f437eeabc8d2e654a9d2b9f4a530afb697309441da9c78b45bd6dc6ca840",
+      "pages_total": 7,
+      "pages_scanned": 7,
+      "images": [],
+      "errors": [],
+      "source": "resources/Seige_of_Vicksburg_Sample_OCR-crazyones-merged.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 206209,
+      "sha256": "e8b9d461f035f8ce2440f9061d35b2164148eb3511a487aacfc26a94cb9d90fe",
+      "pages_total": 6,
+      "pages_scanned": 6,
+      "images": [],
+      "errors": [],
+      "source": "resources/Seige_of_Vicksburg_Sample_OCR.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 34534,
+      "sha256": "e3f4e6e306233fe3105713f96ddfa538121009aaa1ac0250b896f60150f23c8b",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/selenium-pypdf-issue-177.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 124781,
+      "sha256": "bdc3c9b43ea8facaddc50ed3a6ce9a6311fba05271710bc40e01ffda4fa7993c",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/SF424_page2.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 831160,
+      "sha256": "6d3a4f4e52ac9fd68713980b39cbcfe5a3eb468d38e08fba8c54b8d99bfb2a2b",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/side-by-side-subfig.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 283052,
+      "sha256": "82c8f91b845dad1b62cb7bd955367f714c436d720dacf0b6a0130e5d8a08ffc0",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/test Orient.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 1201,
+      "sha256": "2a0f8ee1cfabbbbb11a46e9a5879eecefa997e88e77dd0792eac24f8101b4aca",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/toy.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 7681,
+      "sha256": "67ebca2d81de483bd74bc1405554a90b37fd08360ecd405c5edfa7b447ca492b",
+      "pages_total": 2,
+      "pages_scanned": 2,
+      "images": [],
+      "errors": [],
+      "source": "resources/two-different-pages.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 808,
+      "sha256": "8a4a365d6acd5cfaeaa69600c892d7e339d68b0b5d30e6a774861f4c1c45c6a1",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "resources/visitor_text_position.pdf"
+    }
+  ]
+}
