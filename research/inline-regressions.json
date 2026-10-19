@@ -1,0 +1,277 @@
+{
+  "date": "2026-10-19",
+  "test_source_commit": "cf2dabb9bd14aebbb04e924d0c0e5737a938b97f",
+  "runtime_pypdf_source_commit": "cf2dabb9bd14aebbb04e924d0c0e5737a938b97f",
+  "python_version": "3.13.5",
+  "pypdf_version": "6.21.1",
+  "exit_status": 1,
+  "exit_status_reason": "Known malformed inline DCT fixture returns partial; remaining 7 PDFs fully scanned.",
+  "summary": {
+    "file_status_counts": {
+      "ok": 7,
+      "partial": 1
+    },
+    "unique_inline_definitions": 15453,
+    "inline_invocations": 15453,
+    "parsed_encoded_payload_bytes": {
+      "count": 15453,
+      "minimum": 1,
+      "maximum": 3996,
+      "p50_nearest_rank": 272,
+      "p95_nearest_rank": 2604,
+      "greater_than_4096": 0,
+      "greater_than_8192": 0
+    },
+    "estimated_packed_sample_bytes": {
+      "count": 13769,
+      "minimum": 1,
+      "maximum": 56394,
+      "p50_nearest_rank": 216,
+      "p95_nearest_rank": 2516,
+      "greater_than_4096": 2,
+      "greater_than_8192": 2
+    },
+    "unknown_sample_estimates": 1684
+  },
+  "per_file": [
+    {
+      "source": "inline-fixtures/bi-text.pdf",
+      "status": "ok",
+      "file_bytes": 21939,
+      "sha256": "edec7c0cb675c14d68c2ee15f7fa05a3508d797e68421669e20525acfb8620d3",
+      "pages_scanned": 1,
+      "pages_total": 1,
+      "inline_definitions": 1,
+      "filters_raw": {
+        "/A85|/Fl": 1
+      },
+      "max_parsed_encoded_payload_bytes": 51,
+      "max_estimated_packed_sample_bytes": 768,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/bug1065245.pdf",
+      "status": "ok",
+      "file_bytes": 2188,
+      "sha256": "00beff9834bc18913a93f0c7bc0572187845c665e29a1ff3aa0bc3b8121feee5",
+      "pages_scanned": 1,
+      "pages_total": 1,
+      "inline_definitions": 3,
+      "filters_raw": {
+        "/DCT": 3
+      },
+      "max_parsed_encoded_payload_bytes": 3056,
+      "max_estimated_packed_sample_bytes": 56394,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/inline-dct-early-eof.pdf",
+      "status": "partial",
+      "file_bytes": 465,
+      "sha256": "cd0bbc59418c682021fad122aec4d6de463077883702849f826775b3d07b7dd5",
+      "pages_scanned": 0,
+      "pages_total": 1,
+      "inline_definitions": 0,
+      "filters_raw": {},
+      "max_parsed_encoded_payload_bytes": null,
+      "max_estimated_packed_sample_bytes": null,
+      "unknown_estimates": 0,
+      "errors": [
+        "page:1:PdfReadError:Unexpected end of stream."
+      ]
+    },
+    {
+      "source": "inline-fixtures/jpx-no-spacecode.pdf",
+      "status": "ok",
+      "file_bytes": 425625,
+      "sha256": "73cdad27df4070317e1de3548fb9cc326807e790067f5148b07724589d412148",
+      "pages_scanned": 1,
+      "pages_total": 1,
+      "inline_definitions": 0,
+      "filters_raw": {},
+      "max_parsed_encoded_payload_bytes": null,
+      "max_estimated_packed_sample_bytes": null,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/lebo102.pdf",
+      "status": "ok",
+      "file_bytes": 5837520,
+      "sha256": "9fbb0bee282e9a6736da00a970516fccb405f06939fce37e2923f9e9b2074844",
+      "pages_scanned": 15,
+      "pages_total": 15,
+      "inline_definitions": 13591,
+      "filters_raw": {
+        "(none)": 13591
+      },
+      "max_parsed_encoded_payload_bytes": 3996,
+      "max_estimated_packed_sample_bytes": 3996,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/pdfjs-issue14256.pdf",
+      "status": "ok",
+      "file_bytes": 15125,
+      "sha256": "6f93d05677c6ceea8d95acd032c19c0e6c88cdb917f73639aa931cd2395d88f9",
+      "pages_scanned": 1,
+      "pages_total": 1,
+      "inline_definitions": 8,
+      "filters_raw": {
+        "/ASCIIHexDecode": 1,
+        "/AHx": 6,
+        "/AHx|/Fl": 1
+      },
+      "max_parsed_encoded_payload_bytes": 1276,
+      "max_estimated_packed_sample_bytes": 600,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/plan-excerpt.pdf",
+      "status": "ok",
+      "file_bytes": 5171524,
+      "sha256": "79d9ffcb529bbb6c1fba336ebfa963c4fe77b13ec652f9d9902bd55e1033453a",
+      "pages_scanned": 2,
+      "pages_total": 2,
+      "inline_definitions": 1849,
+      "filters_raw": {
+        "(none)": 1849
+      },
+      "max_parsed_encoded_payload_bytes": 3708,
+      "max_estimated_packed_sample_bytes": 3276,
+      "unknown_estimates": 1684,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/tt-inline.pdf",
+      "status": "ok",
+      "file_bytes": 1336,
+      "sha256": "ad7046301abfe41a95bbb91169c3d9d6197f413172b7f4447ec0e3ca0c9b6257",
+      "pages_scanned": 1,
+      "pages_total": 1,
+      "inline_definitions": 1,
+      "filters_raw": {
+        "/RL": 1
+      },
+      "max_parsed_encoded_payload_bytes": 65,
+      "max_estimated_packed_sample_bytes": 256,
+      "unknown_estimates": 0,
+      "errors": []
+    }
+  ],
+  "observations": [
+    {
+      "source": "bug1065245.pdf",
+      "finding": "Three real inline DCT images: encoded 3,056 bytes vs 723 x 26 RGB 8-bit estimated 56,394 packed bytes; encoded 2,079 vs 723 x 7 RGB 8-bit estimated 15,183; encoded 1,099 vs 213 x 5 RGB 8-bit estimated 3,195. Concrete evidence that encoded and unpacked sample sizes differ; no pixels decoded."
+    },
+    {
+      "source": "jpx-no-spacecode.pdf",
+      "finding": "No inline images. Verified /Resources/XObject /image subtype /Image and filter /JPXDecode. JPX XObject negative control, not inline JPX coverage."
+    },
+    {
+      "source": "bi-text.pdf",
+      "finding": "Sole 51-byte /A85,/Fl payload SHA256 9df7ce4c1d04ab11f3c346abfa949ca041a4a6aa175ade77dfdcd95515655a66 matches original resources/reportlab-inline-image.pdf; repeats baseline payload rather than independent diversity."
+    },
+    {
+      "source": "plan-excerpt.pdf",
+      "finding": "1,849 unfiltered inline definitions; 1,684 metadata estimates unknown, raw encoded measurements retained. Unknown estimates are not zero."
+    },
+    {
+      "source": "lebo102.pdf",
+      "finding": "13,591 unfiltered inline definitions over 15 pages dominate pooled percentiles. Use file-level strata as well."
+    }
+  ],
+  "caveats": [
+    "Regression-test convenience selection cannot estimate ecosystem prevalence or justify a universal hard limit.",
+    "All 15,453 observed parsed payloads are <= 3,996 bytes; none exceed 4,096 or 8,192. Two estimated sample sizes exceed 8,192, both DCT.",
+    "Parser-retained bytes have whitespace ambiguity and are not exact original byte spans.",
+    "Page content and Do-invoked Forms only; annotation appearances, patterns, Type3 excluded.",
+    "No independently verified inline JPX fixture found in reviewed relevant tests. No guessed URLs or synthetic substitutes.",
+    "Public availability does not grant redistribution rights. All 8 PDFs remain local; do not upload fixture bytes. Original URL/hash and aggregate results may be shared subject to rights review.",
+    "Exact URLs copied from pinned upstream tests, 11,475,722 bytes downloaded, no credentials/API authentication/private or paid resources."
+  ],
+  "selection": "Convenience selection from exact URLs in pinned pypdf upstream tests, enriched for inline regressions; not a representative PDF corpus.",
+  "limits": {
+    "timeout_seconds_per_file": 45,
+    "max_images_per_file": 50000,
+    "max_file_mib": 50,
+    "max_pages_per_file": 2000
+  },
+  "sources": [
+    {
+      "name": "bi-text.pdf",
+      "source_url": "https://github.com/py-pdf/pypdf/files/14322910/BI_text_with_one_image.pdf",
+      "upstream_test": "tests/test_images.py::test_bi_in_text",
+      "selection_reason": "Explicit BI-in-text regression and inline-image example",
+      "bytes": 21939,
+      "sha256": "edec7c0cb675c14d68c2ee15f7fa05a3508d797e68421669e20525acfb8620d3"
+    },
+    {
+      "name": "lebo102.pdf",
+      "source_url": "https://github.com/py-pdf/pypdf/files/14982414/lebo102.pdf",
+      "upstream_test": "tests/test_images.py::test_inline_image_extraction",
+      "selection_reason": "Issue2598 multiple-page inline regression",
+      "bytes": 5837520,
+      "sha256": "9fbb0bee282e9a6736da00a970516fccb405f06939fce37e2923f9e9b2074844"
+    },
+    {
+      "name": "plan-excerpt.pdf",
+      "source_url": "https://github.com/py-pdf/pypdf/files/15210011/Pages.62.73.from.0560-22_WSP.Plan_July.2022_Version.1.pdf",
+      "upstream_test": "tests/test_images.py::test_inline_image_extraction",
+      "selection_reason": "Issue2598 alternate inline corpus",
+      "bytes": 5171524,
+      "sha256": "79d9ffcb529bbb6c1fba336ebfa963c4fe77b13ec652f9d9902bd55e1033453a"
+    },
+    {
+      "name": "pdfjs-issue14256.pdf",
+      "source_url": "https://github.com/mozilla/pdf.js/raw/master/test/pdfs/issue14256.pdf",
+      "upstream_test": "tests/test_images.py::test_inline_image_extraction",
+      "selection_reason": "Eight inline images in upstream expected output",
+      "bytes": 15125,
+      "sha256": "6f93d05677c6ceea8d95acd032c19c0e6c88cdb917f73639aa931cd2395d88f9"
+    },
+    {
+      "name": "bug1065245.pdf",
+      "source_url": "https://github.com/py-pdf/pypdf/files/15233597/bug1065245.pdf",
+      "upstream_test": "tests/test_images.py::test_inline_image_extraction",
+      "selection_reason": "Issue2598 inline JPEG comparison",
+      "bytes": 2188,
+      "sha256": "00beff9834bc18913a93f0c7bc0572187845c665e29a1ff3aa0bc3b8121feee5"
+    },
+    {
+      "name": "tt-inline.pdf",
+      "source_url": "https://github.com/py-pdf/pypdf/files/15282904/tt.pdf",
+      "upstream_test": "tests/test_images.py::test_inline_image_extraction",
+      "selection_reason": "Issue2598 alternate inline image regression",
+      "bytes": 1336,
+      "sha256": "ad7046301abfe41a95bbb91169c3d9d6197f413172b7f4447ec0e3ca0c9b6257"
+    },
+    {
+      "name": "inline-dct-early-eof.pdf",
+      "source_url": "https://github.com/user-attachments/files/23056988/inline_dct__early_eof.pdf",
+      "upstream_test": "tests/generic/test_image_inline.py::test_extract_inline_dct__early_end_of_file",
+      "selection_reason": "Malformed inline DCT diagnostic control; upstream expects parsing error",
+      "bytes": 465,
+      "sha256": "cd0bbc59418c682021fad122aec4d6de463077883702849f826775b3d07b7dd5"
+    },
+    {
+      "name": "jpx-no-spacecode.pdf",
+      "source_url": "https://github.com/py-pdf/pypdf/files/12253581/tt2.pdf",
+      "upstream_test": "tests/test_filters.py::test_jpx_no_spacecode",
+      "selection_reason": "JPX image regression; may be XObject rather than inline, keep as declared negative control",
+      "bytes": 425625,
+      "sha256": "73cdad27df4070317e1de3548fb9cc326807e790067f5148b07724589d412148"
+    }
+  ],
+  "reproduction": [
+    "Obtain each PDF from its original source_url if permitted; verify sha256; save using name in an inline-fixtures directory.",
+    "Install this tool with pinned pypdf 6.21.1.",
+    "pdf-inline-audit inline-fixtures --timeout 45 --max-images 50000 --output fresh-report.json",
+    "Expected exit status is 1 because one deliberately malformed fixture is partial."
+  ],
+  "rights": "No PDFs or temporary signed download URLs are redistributed. Source links were already public in the pinned upstream tests. Underlying document rights remain with original authors. These are locally measured aggregate statistics, not an endorsement or upstream accepted result."
+}
