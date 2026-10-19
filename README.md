@@ -94,6 +94,25 @@ pdf-inline-audit sample-files --output sample-files-report.json
 The dependency is pinned to pypdf 6.21.1 because the content-parser representation
 used by this tool is version-sensitive. Reassess the tests before upgrading it.
 
+## Inline-regression research
+
+[`research/inline-regressions.json`](research/inline-regressions.json) records a
+separate, deliberately inline-heavy selection of eight public upstream regression
+fixtures (11,475,722 downloaded bytes), with original URLs, SHA256 values,
+per-file results and reproduction instructions. PDF bytes are not redistributed.
+
+Seven files completed; one deliberately malformed DCT fixture is partial. The
+collector found 15,453 inline definitions with parsed payloads from 1 to 3,996
+bytes. Two DCT payloads of 3,056 and 2,079 bytes have estimated packed sample sizes
+of 56,394 and 15,183 bytes respectively. Encoded and estimated sample limits
+therefore answer different questions. The estimates remain metadata-derived.
+
+One document contributes 13,591 definitions and dominates pooled percentiles;
+1,684 sample estimates are unknown. The JPX control contains an XObject and does
+not establish inline-JPX coverage. This convenience sample does not justify a
+universal hard limit or estimate ecosystem prevalence. No upstream review or
+acceptance is claimed.
+
 ## Tests
 
 Tests use only the standard library and the pinned runtime dependency:
