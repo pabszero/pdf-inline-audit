@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "tool_version": "0.1.0",
+  "pypdf_version": "6.21.1",
+  "limits": {
+    "max_file_bytes": 52428800,
+    "max_pages": 2000,
+    "max_images": 10000,
+    "max_form_depth": 32,
+    "max_form_invocations": 5000
+  },
+  "timeout_seconds_per_file": 10,
+  "measurement_notes": [
+    "Sizes are parser-retained encoded inline payloads, not exact original byte spans.",
+    "Sample sizes are metadata-derived estimates with byte-aligned scanlines, not decoded measurements.",
+    "No threshold is a proposed policy or a PDF conformance verdict.",
+    "Unique definitions use per-page top-level streams and document-wide Form references plus operation index; repeated Form placements counted separately.",
+    "Only page content and invoked Form XObjects are traversed; annotation appearances, patterns and Type3 glyph programs are excluded.",
+    "Partial, skipped, encrypted, errored and timed-out inputs remain explicit in the report."
+  ],
+  "summary": {
+    "file_status_counts": {
+      "ok": 32,
+      "encrypted": 1,
+      "error": 1
+    },
+    "unique_inline_definitions": 1,
+    "inline_invocations": 1,
+    "parsed_encoded_payload_bytes": {
+      "count": 1,
+      "minimum": 51,
+      "maximum": 51,
+      "p50_nearest_rank": 51,
+      "p95_nearest_rank": 51,
+      "greater_than_4096": 0,
+      "greater_than_8192": 0
+    },
+    "estimated_packed_sample_bytes": {
+      "count": 1,
+      "minimum": 768,
+      "maximum": 768,
+      "p50_nearest_rank": 768,
+      "p95_nearest_rank": 768,
+      "greater_than_4096": 0,
+      "greater_than_8192": 0
+    },
+    "unknown_sample_estimates": 0
+  },
+  "files": [
+    {
+      "status": "ok",
+      "file_bytes": 16978,
+      "sha256": "f723638db6e763cf4ccadad38a3d38a02d9ecab95dab1f0bbf00e801991b5f92",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/001-trivial/minimal-document.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 12609,
+      "sha256": "fc67ce4f76ffb44e818ebe4f673dbeb6002ad93a59f3856ff14fb1d3625f10a5",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/002-trivial-libre-office-writer/002-trivial-libre-office-writer.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 74061,
+      "sha256": "64c5bc35008015936ef3ff60f6ad268a713b5271727b72ef308f87b9b495646f",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/003-pdflatex-image/pdflatex-image.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 24607,
+      "sha256": "f17a09190ad8a04964d78115d8ba7fc7a298557274fa14932ba58612342b7dec",
+      "pages_total": 4,
+      "pages_scanned": 4,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/004-pdflatex-4-pages/pdflatex-4-pages.pdf"
+    },
+    {
+      "status": "encrypted",
+      "file_bytes": 12783,
+      "sha256": "3e333bff0196d0c5320f40cdd1b7a3abd21b316de79de3c0f9083accdaef9358",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "password_required"
+      ],
+      "source": "sample-files/005-libreoffice-writer-password/libreoffice-writer-password.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 48722,
+      "sha256": "17b5a4dac75613b82749c7538fc93991a385a5d419cc9832fdba24c1726a031a",
+      "pages_total": 4,
+      "pages_scanned": 4,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/006-pdflatex-outline/pdflatex-outline.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 2848,
+      "sha256": "99c687865a8c81b11fe2b6be84b4aaf47bf785556d07274debf9bc1e0807ed2f",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/007-imagemagick-images/imagemagick-ASCII85Decode.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 1880,
+      "sha256": "cf6f94b533dc28974961fd62a67ebfc722224a0be8a4f0c4c91b26a522d5f70d",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/007-imagemagick-images/imagemagick-CCITTFaxDecode.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 16012,
+      "sha256": "0f2076573bfed1107300a2383b88bbbbc2b85a57f06b3ff478a0faa7ded57b4e",
+      "pages_total": 6,
+      "pages_scanned": 6,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/007-imagemagick-images/imagemagick-images.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 2678,
+      "sha256": "ee7ce5f301920761371b0a2537634c39b9a8cd2ab578dee4c17056da297628d8",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/007-imagemagick-images/imagemagick-lzw.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 1605,
+      "sha256": "49879923bca6ee6fc7b98ff40a92509cd41682d206a4009e97e7f34087add693",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [
+        {
+          "stream": "page:1",
+          "operation_index": 7,
+          "first_page": 1,
+          "invocations": 1,
+          "parsed_encoded_payload_bytes": 51,
+          "estimated_packed_sample_bytes": 768,
+          "estimate_unknown_reason": null,
+          "filters": [
+            "/A85",
+            "/Fl"
+          ]
+        }
+      ],
+      "errors": [],
+      "source": "sample-files/008-reportlab-inline-image/inline-image.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 1793479,
+      "sha256": "20430e92d42bc06c606f5889d9832c8e5c4dde17f8333f99fbcba96b3a0cba14",
+      "pages_total": 117,
+      "pages_scanned": 117,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/009-pdflatex-geotopo/GeoTopo-komprimiert.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 5321132,
+      "sha256": "a0b9242aef9b5a2c4850160cc9aaf64f5c7b8be705d6872ae28aebf5ab512540",
+      "pages_total": 117,
+      "pages_scanned": 117,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/009-pdflatex-geotopo/GeoTopo.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 27712,
+      "sha256": "fc6265298caafffeee9dd2d7f3ae2e53ab9f61ec0561369429d442f731d339da",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/010-pdflatex-forms/pdflatex-forms.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 80100,
+      "sha256": "69f6b7f493b1bc55d518942976cbeadc4ec0a36f6d8a6dc24feffc516d35b2c9",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/011-google-doc-document/google-doc-document.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 34186,
+      "sha256": "9105eeef8c8cafdb141b7edd768a5e08adffe320d1d4f89e1a7112a2b37d1c57",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/012-libreoffice-form/libreoffice-form.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 13790,
+      "sha256": "fdbdd49a118053577240850826a7eff6ac4ce7288527bf4c483714f0113860ed",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/013-reportlab-overlay/reportlab-overlay.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 82281,
+      "sha256": "362dc3cc03538e864841a08d2b7365daf926651a2fe2c343669e03c8ac33b1af",
+      "pages_total": 4,
+      "pages_scanned": 4,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/014-outlines/mistitled_outlines_example.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 14957,
+      "sha256": "31b50622a8623723188bbb69385881c70ca8bedaa5099a19392c0d0afcccd8ee",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/015-arabic/habibi-oneline-cmap.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 15860,
+      "sha256": "56329f1e3cff5358f1f2aadcfac03467cce51b36b2e2daab9c14cef26f7ea536",
+      "pages_total": 4,
+      "pages_scanned": 4,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/015-arabic/habibi-rotated.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 14957,
+      "sha256": "1017c4559eb7d0ccf7d151a3f051c8c1da27a7c1dc8050b2b687e3d3228e1b6f",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/015-arabic/habibi.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 9473,
+      "sha256": "bc38b458acd125c09fb7603cf0cca5d8737eea9fe353c2aef2c42b3db9cf9076",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/016-libre-office-link/libre-office-link.pdf"
+    },
+    {
+      "status": "error",
+      "file_bytes": 2818798,
+      "sha256": "9900c4c7edaa0b950314f33d8946b1247e3eafeea893958be76e62a32e1cd38a",
+      "pages_total": null,
+      "pages_scanned": 0,
+      "images": [],
+      "errors": [
+        "PdfReadError:Invalid object in /Pages"
+      ],
+      "source": "sample-files/017-unreadable-meta-data/unreadablemetadata.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 2267027,
+      "sha256": "aaad90df16fce40ec768629d2135479b98f65b39bb27c7f80fb106393187d619",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/018-base64-image/base64image.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 40115,
+      "sha256": "3adfd74b88cebcdd46c83f9b1d86b6995700233126b53e2f1fcacb40eab2dc84",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/019-grayscale-image/grayscale-image.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 2097,
+      "sha256": "8e52052b0d7242a6d3df844e0f24ed3c09ca36440761d1b00f85bbabc15f7369",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/020-xmp/output_with_metadata_pymupdf.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 16368,
+      "sha256": "f05f2738a1fa8c1d2e1147881fe1a62516a7f8caaf784067790731f56df626c4",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/021-pdfa/crazyones-pdfa.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 14404,
+      "sha256": "8820ba44cd62264fd561e921aacc214cee7ba76723f525d591cdb2104a87f0dd",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/022-pdfkit/pdfkit.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 443953,
+      "sha256": "5a5f76a951e403a5b357992789afc5164fd6c2914583741de7a1dd08ec029ab2",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/023-cmyk-image/cmyk-image.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 1833,
+      "sha256": "c327f921abfba23a5c42d5c429ba99ded1cf5511521003aba6d2aff9c940d9cc",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/024-annotations/annotated_pdf.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 24296,
+      "sha256": "1c7e5f3bb3bbf9a2424cac84f46b17e5b62af0719d63b445c280c76634b316ba",
+      "pages_total": 1,
+      "pages_scanned": 1,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/025-attachment/with-attachment.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 78657,
+      "sha256": "bdb495e95b3e1afae95013099dc59b0cea047f1fa70f677ee9cb33f10faa1c6c",
+      "pages_total": 3,
+      "pages_scanned": 3,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/026-latex-multicolumn/multicolumn.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 272039,
+      "sha256": "cc195eac510b81123de4f55ac9f8185f2120975a7b75a106460b98615737aacd",
+      "pages_total": 4,
+      "pages_scanned": 4,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/027-cropped-rotated-scaled/cropped-rotated-scaled.pdf"
+    },
+    {
+      "status": "ok",
+      "file_bytes": 78772,
+      "sha256": "16cb8e10bd59e30b4d350f11d0ed9c7d0bd7e7bb962a46022c89836e2aa44f63",
+      "pages_total": 3,
+      "pages_scanned": 3,
+      "images": [],
+      "errors": [],
+      "source": "sample-files/028-image-references-deduplication/wrong-references.pdf"
+    }
+  ]
+}
