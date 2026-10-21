@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pdf-inline-audit"
-version = "0.1.0"
+version = "0.2.0"
 description = "Reproducible corpus statistics for PDF inline image payloads"
 readme = "README.md"
 requires-python = ">=3.10"

@@ -17,7 +17,7 @@ import pypdf
 from pypdf import PdfReader
 from pypdf.generic import ContentStream, DictionaryObject
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
 
 @dataclass(frozen=True)
@@ -33,7 +33,37 @@ class ScanLimit(Exception):
     """A caller-selected limit prevents complete measurement."""
 
 
-def sample_estimate(settings: dict) -> tuple[int | None, str | None]:
+def color_components(color: Any, resources: dict | None = None) -> int | None:
+    """Resolve known device/Indexed spaces, without decoding profiles or pixels."""
+    spaces = None
+    seen = set()
+    for _ in range(32):
+        if hasattr(color, "get_object"):
+            color = color.get_object()
+        if isinstance(color, list):
+            return 1 if color and str(color[0]) in ("/I", "/Indexed") else None
+        if not isinstance(color, str):
+            return None
+        channels = {
+            "/G": 1, "/DeviceGray": 1, "/RGB": 3, "/DeviceRGB": 3,
+            "/CMYK": 4, "/DeviceCMYK": 4,
+        }.get(color)
+        if channels is not None:
+            return channels
+        if color in seen:
+            return None
+        if spaces is None:
+            spaces = (resources or {}).get("/ColorSpace", {})
+            if hasattr(spaces, "get_object"):
+                spaces = spaces.get_object()
+        if not isinstance(spaces, dict):
+            return None
+        seen.add(color)
+        color = spaces.get(color)
+    return None
+
+
+def sample_estimate(settings: dict, resources: dict | None = None) -> tuple[int | None, str | None]:
     """Packed samples including row padding, not a measured decoded size."""
     width = settings.get("/W", settings.get("/Width"))
     height = settings.get("/H", settings.get("/Height"))
@@ -44,12 +74,7 @@ def sample_estimate(settings: dict) -> tuple[int | None, str | None]:
     if mask and bits != 1:
         return None, "contradictory_image_mask_bits"
     color = settings.get("/CS", settings.get("/ColorSpace"))
-    channels = 1 if mask else {
-        "/G": 1, "/DeviceGray": 1, "/RGB": 3, "/DeviceRGB": 3,
-        "/CMYK": 4, "/DeviceCMYK": 4,
-    }.get(str(color))
-    if isinstance(color, list) and color and str(color[0]) in ("/I", "/Indexed"):
-        channels = 1
+    channels = 1 if mask else color_components(color, resources)
     if any(isinstance(v, bool) or not isinstance(v, int) or v <= 0
            for v in (width, height, bits)):
         return None, "missing_or_invalid_dimensions_or_bits"
@@ -107,13 +132,17 @@ def scan_pdf(path: Path, limits: Limits = Limits()) -> dict[str, Any]:
         for index, (operands, operator) in enumerate(operations[label]):
             if operator == b"INLINE IMAGE":
                 key = (label, index)
+                settings = operands["settings"]
+                estimated, unknown = sample_estimate(settings, resources)
                 if key in definitions:
-                    definitions[key]["invocations"] += 1
+                    previous = definitions[key]
+                    previous["invocations"] += 1
+                    if (previous["estimated_packed_sample_bytes"], previous["estimate_unknown_reason"]) != (estimated, unknown):
+                        previous["estimated_packed_sample_bytes"] = None
+                        previous["estimate_unknown_reason"] = "context_dependent_color_space"
                     continue
                 if len(definitions) >= limits.max_images:
                     raise ScanLimit("image_count_limit")
-                settings = operands["settings"]
-                estimated, unknown = sample_estimate(settings)
                 item = {
                     "stream": label, "operation_index": index, "first_page": page,
                     "invocations": 1,

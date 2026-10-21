@@ -1,26 +1,36 @@
 import json
 from pathlib import Path
 from pypdf import PdfWriter
-from pypdf.generic import ArrayObject, BooleanObject, DecodedStreamObject, DictionaryObject, NameObject, NumberObject
+from pypdf.generic import ArrayObject, BooleanObject, ByteStringObject, DecodedStreamObject, DictionaryObject, NameObject, NumberObject
 from pdf_inline_audit import Limits, distribution, isolated_scan, main, sample_estimate, scan_pdf
 
-def make_pdf(path, streams, form_data=None, recursive=False):
+def make_pdf(path, streams, form_data=None, recursive=False, color_spaces=None, form_color_spaces=None):
     writer = PdfWriter()
+
+    def color_resources(spaces):
+        table = DictionaryObject({NameObject(name): writer._add_object(value)
+                                  for name, value in spaces.items()})
+        return DictionaryObject({NameObject('/ColorSpace'): writer._add_object(table)})
+
     form_ref = None
     if form_data is not None:
         form = DecodedStreamObject()
         form.set_data(form_data)
         form.update({NameObject('/Subtype'): NameObject('/Form'), NameObject('/BBox'): ArrayObject([NumberObject(v) for v in (0, 0, 10, 10)])})
         form_ref = writer._add_object(form)
+        if form_color_spaces is not None:
+            form[NameObject('/Resources')] = color_resources(form_color_spaces)
         if recursive:
             form[NameObject('/Resources')] = DictionaryObject({NameObject('/XObject'): DictionaryObject({NameObject('/Fm'): form_ref})})
-    for data in streams:
+    for index, data in enumerate(streams):
         page = writer.add_blank_page(100, 100)
         content = DecodedStreamObject()
         content.set_data(data)
         page[NameObject('/Contents')] = writer._add_object(content)
         if form_ref is not None:
             page[NameObject('/Resources')] = DictionaryObject({NameObject('/XObject'): DictionaryObject({NameObject('/Fm'): form_ref})})
+        if color_spaces is not None:
+            page.setdefault(NameObject('/Resources'), DictionaryObject()).update(color_resources(color_spaces[index]))
     writer.write(path)
     return path
 
@@ -139,6 +149,45 @@ class TestAudit(unittest.TestCase):
     def test_unresolved_colorspace_is_unknown_not_guessed(self):
         tmp_path = self.tmp_path
         estimate, reason = sample_estimate({'/W': 2, '/H': 3, '/BPC': 8, '/CS': '/Custom'})
+        assert estimate is None
+        assert reason == 'unresolved_or_unsupported_color_space'
+
+    def test_named_indexed_colorspace_resolves_indirect_page_resources(self):
+        indexed = ArrayObject([NameObject('/Indexed'), NameObject('/DeviceRGB'),
+                               NumberObject(1), ByteStringObject(b'\x00\x00\x00\xff\xff\xff')])
+        path = make_pdf(self.tmp_path / 'named-indexed.pdf',
+                        [inline(b'00000000>', b'/W 9 /H 2 /BPC 1 /CS /Palette /F /AHx')],
+                        color_spaces=[{'/Palette': indexed}])
+        result = scan_pdf(path)
+        assert result['status'] == 'ok'
+        assert result['images'][0]['estimated_packed_sample_bytes'] == 4
+
+    def test_form_colorspace_overrides_page_resource_name(self):
+        path = make_pdf(self.tmp_path / 'form-colors.pdf', [b'/Fm Do'],
+                        inline(b'000102030405060708090a0b>', b'/W 2 /H 2 /BPC 8 /CS /Custom /F /AHx'),
+                        color_spaces=[{'/Custom': NameObject('/DeviceGray')}],
+                        form_color_spaces={'/Custom': NameObject('/DeviceRGB')})
+        result = scan_pdf(path)
+        assert result['status'] == 'ok'
+        assert result['images'][0]['estimated_packed_sample_bytes'] == 12
+
+    def test_reused_form_with_conflicting_inherited_colorspaces_is_unknown(self):
+        path = make_pdf(self.tmp_path / 'context-dependent.pdf', [b'/Fm Do', b'/Fm Do'],
+                        inline(b'000102>', b'/W 1 /H 1 /BPC 8 /CS /Custom /F /AHx'),
+                        color_spaces=[{'/Custom': NameObject('/DeviceGray')},
+                                      {'/Custom': NameObject('/DeviceRGB')}])
+        result = scan_pdf(path)
+        assert result['status'] == 'ok'
+        assert len(result['images']) == 1
+        image = result['images'][0]
+        assert image['invocations'] == 2
+        assert image['estimated_packed_sample_bytes'] is None
+        assert image['estimate_unknown_reason'] == 'context_dependent_color_space'
+
+    def test_cyclic_colorspace_aliases_remain_unknown(self):
+        estimate, reason = sample_estimate(
+            {'/W': 2, '/H': 3, '/BPC': 8, '/CS': '/A'},
+            {'/ColorSpace': {'/A': '/B', '/B': '/A'}})
         assert estimate is None
         assert reason == 'unresolved_or_unsupported_color_space'
 
