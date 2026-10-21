@@ -1,0 +1,163 @@
+{
+  "date": "2026-10-21",
+  "tool_version": "0.2.0",
+  "pypdf_version": "6.21.1",
+  "python_version": "3.13.5",
+  "baseline_report": "inline-regressions.json",
+  "corpus_provenance": "Same eight public upstream fixtures and SHA256 values as baseline_report; no additional independent corpus or redistributed PDFs.",
+  "reproduction": {
+    "command": "pdf-inline-audit inline-fixtures --max-images 20000 --output resource-report.json",
+    "limits": {
+      "max_file_bytes": 52428800,
+      "max_pages": 2000,
+      "max_images": 20000,
+      "max_form_depth": 32,
+      "max_form_invocations": 5000
+    },
+    "timeout_seconds_per_file": 20,
+    "exit_status": 1,
+    "exit_status_reason": "The same deliberately malformed DCT fixture remains partial; seven files complete."
+  },
+  "before": {
+    "file_status_counts": {
+      "ok": 7,
+      "partial": 1
+    },
+    "unique_inline_definitions": 15453,
+    "inline_invocations": 15453,
+    "parsed_encoded_payload_bytes": {
+      "count": 15453,
+      "minimum": 1,
+      "maximum": 3996,
+      "p50_nearest_rank": 272,
+      "p95_nearest_rank": 2604,
+      "greater_than_4096": 0,
+      "greater_than_8192": 0
+    },
+    "estimated_packed_sample_bytes": {
+      "count": 13769,
+      "minimum": 1,
+      "maximum": 56394,
+      "p50_nearest_rank": 216,
+      "p95_nearest_rank": 2516,
+      "greater_than_4096": 2,
+      "greater_than_8192": 2
+    },
+    "unknown_sample_estimates": 1684
+  },
+  "after": {
+    "file_status_counts": {
+      "ok": 7,
+      "partial": 1
+    },
+    "unique_inline_definitions": 15453,
+    "inline_invocations": 15453,
+    "parsed_encoded_payload_bytes": {
+      "count": 15453,
+      "minimum": 1,
+      "maximum": 3996,
+      "p50_nearest_rank": 272,
+      "p95_nearest_rank": 2604,
+      "greater_than_4096": 0,
+      "greater_than_8192": 0
+    },
+    "estimated_packed_sample_bytes": {
+      "count": 15453,
+      "minimum": 1,
+      "maximum": 56394,
+      "p50_nearest_rank": 272,
+      "p95_nearest_rank": 2608,
+      "greater_than_4096": 2,
+      "greater_than_8192": 2
+    },
+    "unknown_sample_estimates": 0
+  },
+  "comparison": {
+    "file_hashes_statuses_and_definition_counts_unchanged": true,
+    "encoded_payload_distribution_unchanged": true,
+    "newly_resolved_estimates": 1684,
+    "explanation": "Named Indexed color spaces in plan-excerpt.pdf now resolve through the current page resource dictionary. One sample component is used per index, with row byte padding. No image pixels or ICC profiles are decoded."
+  },
+  "per_file": [
+    {
+      "source": "inline-fixtures/bi-text.pdf",
+      "sha256": "edec7c0cb675c14d68c2ee15f7fa05a3508d797e68421669e20525acfb8620d3",
+      "status": "ok",
+      "inline_definitions": 1,
+      "previous_unknown_estimates": 0,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/bug1065245.pdf",
+      "sha256": "00beff9834bc18913a93f0c7bc0572187845c665e29a1ff3aa0bc3b8121feee5",
+      "status": "ok",
+      "inline_definitions": 3,
+      "previous_unknown_estimates": 0,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/inline-dct-early-eof.pdf",
+      "sha256": "cd0bbc59418c682021fad122aec4d6de463077883702849f826775b3d07b7dd5",
+      "status": "partial",
+      "inline_definitions": 0,
+      "previous_unknown_estimates": 0,
+      "unknown_estimates": 0,
+      "errors": [
+        "page:1:PdfReadError:Unexpected end of stream."
+      ]
+    },
+    {
+      "source": "inline-fixtures/jpx-no-spacecode.pdf",
+      "sha256": "73cdad27df4070317e1de3548fb9cc326807e790067f5148b07724589d412148",
+      "status": "ok",
+      "inline_definitions": 0,
+      "previous_unknown_estimates": 0,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/lebo102.pdf",
+      "sha256": "9fbb0bee282e9a6736da00a970516fccb405f06939fce37e2923f9e9b2074844",
+      "status": "ok",
+      "inline_definitions": 13591,
+      "previous_unknown_estimates": 0,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/pdfjs-issue14256.pdf",
+      "sha256": "6f93d05677c6ceea8d95acd032c19c0e6c88cdb917f73639aa931cd2395d88f9",
+      "status": "ok",
+      "inline_definitions": 8,
+      "previous_unknown_estimates": 0,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/plan-excerpt.pdf",
+      "sha256": "79d9ffcb529bbb6c1fba336ebfa963c4fe77b13ec652f9d9902bd55e1033453a",
+      "status": "ok",
+      "inline_definitions": 1849,
+      "previous_unknown_estimates": 1684,
+      "unknown_estimates": 0,
+      "errors": []
+    },
+    {
+      "source": "inline-fixtures/tt-inline.pdf",
+      "sha256": "ad7046301abfe41a95bbb91169c3d9d6197f413172b7f4447ec0e3ca0c9b6257",
+      "status": "ok",
+      "inline_definitions": 1,
+      "previous_unknown_estimates": 0,
+      "unknown_estimates": 0,
+      "errors": []
+    }
+  ],
+  "limitations": [
+    "Metadata-derived estimates, not measured decoded storage or allocated memory.",
+    "Same deliberately selected regression corpus; not a new independent sample or ecosystem prevalence estimate.",
+    "One file dominates pooled statistics. No inline JPX coverage or universal hard size limit follows.",
+    "Unsupported color spaces remain unknown. Reused Forms with conflicting inherited component counts remain unknown."
+  ]
+}
