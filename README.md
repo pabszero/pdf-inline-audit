@@ -44,12 +44,22 @@ rejects an output path that aliases an input PDF.
 **The first field is not an exact original PDF byte span.** pypdf's extraction
 helpers may discard or retain some delimiter whitespace. The second field is
 **not measured decoded pixels**, not an extracted PNG/JPEG file size, and not
-allocated image memory. Named/custom color spaces are explicitly unknown rather
-than guessed. DCT/JPX payloads are never treated as decoded rasters.
+allocated image memory. Device and Indexed color spaces can be resolved directly
+or by name in the current page/Form `/Resources` dictionary. Indexed images use
+one component per sample, regardless of the palette's base space. Other custom
+spaces (including ICCBased, Separation and DeviceN), missing names, and cyclic
+aliases remain explicitly unknown. Lookup is bounded to 32 steps and never
+reads image pixels or decodes profiles. See PDF 32000-1, sections 7.8.3 and 8.9.7
+([Adobe reference](https://opensource.adobe.com/dc-acrobat-sdk-docs/pdfstandards/PDF32000_2008.pdf)).
+DCT/JPX payloads are never treated as decoded rasters.
 
 Forms are traversed through actual `Do` instructions, including nested Forms.
 An indirect Form reused three times contributes one definition and three
-invocations. Cycles, excessive nesting/invocations, page limits and image limits
+invocations. A Form's own resources take precedence over inherited page
+resources. If reuse under different inherited resources produces different
+estimates, the definition's estimate becomes unknown with reason
+`context_dependent_color_space`; invocation counting still includes every use.
+Cycles, excessive nesting/invocations, page limits and image limits
 produce explicit partial results. Uninvoked resource entries are not scanned.
 Top-level content is keyed per page; a content stream shared between pages is
 therefore measured per page. This distinction is recorded here for corpus users.
@@ -107,8 +117,17 @@ bytes. Two DCT payloads of 3,056 and 2,079 bytes have estimated packed sample si
 of 56,394 and 15,183 bytes respectively. Encoded and estimated sample limits
 therefore answer different questions. The estimates remain metadata-derived.
 
-One document contributes 13,591 definitions and dominates pooled percentiles;
-1,684 sample estimates are unknown. The JPX control contains an XObject and does
+The historical report was produced by version 0.1.0, with 1,684 unresolved
+sample estimates. Version 0.2.0 resolves all 1,684 through named Indexed color
+spaces in `plan-excerpt.pdf`. The comparison in
+[`research/resource-color-spaces.json`](research/resource-color-spaces.json)
+uses the same eight PDF hashes, statuses and 15,453 definitions; the encoded
+payload distribution is unchanged. Reproduce it with `--max-images 20000`
+(the default 10,000 limit truncates the largest file). No additional independent
+sample is claimed.
+
+One document contributes 13,591 definitions and dominates pooled percentiles.
+The JPX control contains an XObject and does
 not establish inline-JPX coverage. This convenience sample does not justify a
 universal hard limit or estimate ecosystem prevalence. No upstream review or
 acceptance is claimed.
@@ -123,7 +142,9 @@ python -m unittest discover -s tests -v
 
 Synthetic PDF fixtures test parser-backed payload measurements, filter arrays,
 long-form keys, false-positive text strings, bit-packed rows, image masks, repeated
-Forms, recursion, unknown color spaces, corruption, encryption, scan limits,
+Forms, recursion, indirect named color spaces, Form resource precedence,
+context-dependent reuse, cyclic aliases, unknown color spaces, corruption,
+encryption, scan limits,
 timeouts and the Windows-compatible spawn-based CLI.
 
 ## Contribution and provenance
