@@ -1,0 +1,294 @@
+{
+  "purpose": "Extend inline-image size evidence with three nonoverlapping existing QPDF regression fixtures; no parser policy recommendation.",
+  "provenance": {
+    "files": [
+      {
+        "name": "large-inline-image.pdf",
+        "repository": "qpdf/qpdf",
+        "commit": "4eba95899886e851cc41d76886483b347612f2a8",
+        "repository_path": "qpdf/qtest/qpdf/large-inline-image.pdf",
+        "source_url": "https://github.com/qpdf/qpdf/blob/4eba95899886e851cc41d76886483b347612f2a8/qpdf/qtest/qpdf/large-inline-image.pdf",
+        "raw_url": "https://raw.githubusercontent.com/qpdf/qpdf/4eba95899886e851cc41d76886483b347612f2a8/qpdf/qtest/qpdf/large-inline-image.pdf",
+        "git_blob": "0a47c19217419f28dd0a8fa5fa192f9852320935",
+        "sha256": "7da28b9cb83805404c4c5e8a99184b062175f017a2fb40a2bae08aa3f9763d95",
+        "file_bytes": 1744913,
+        "license": "Apache-2.0; project LICENSE/NOTICE, first-party regression fixtures; no separate per-file grant claimed",
+        "redistributed": false
+      },
+      {
+        "name": "inline-image-colorspace-lookup.pdf",
+        "repository": "qpdf/qpdf",
+        "commit": "4eba95899886e851cc41d76886483b347612f2a8",
+        "repository_path": "qpdf/qtest/qpdf/inline-image-colorspace-lookup.pdf",
+        "source_url": "https://github.com/qpdf/qpdf/blob/4eba95899886e851cc41d76886483b347612f2a8/qpdf/qtest/qpdf/inline-image-colorspace-lookup.pdf",
+        "raw_url": "https://raw.githubusercontent.com/qpdf/qpdf/4eba95899886e851cc41d76886483b347612f2a8/qpdf/qtest/qpdf/inline-image-colorspace-lookup.pdf",
+        "git_blob": "30584737f66da6d1e02bbd3d6d9abcc9adbb47ae",
+        "sha256": "fe533848681512e8b843b1d07e6a77a0107d64a3584a0b1101cf18fcc28f3337",
+        "file_bytes": 1176,
+        "license": "Apache-2.0; project LICENSE/NOTICE, first-party regression fixtures; no separate per-file grant claimed",
+        "redistributed": false
+      },
+      {
+        "name": "nested-form-xobjects-inline-images.pdf",
+        "repository": "qpdf/qpdf",
+        "commit": "4eba95899886e851cc41d76886483b347612f2a8",
+        "repository_path": "qpdf/qtest/qpdf/nested-form-xobjects-inline-images.pdf",
+        "source_url": "https://github.com/qpdf/qpdf/blob/4eba95899886e851cc41d76886483b347612f2a8/qpdf/qtest/qpdf/nested-form-xobjects-inline-images.pdf",
+        "raw_url": "https://raw.githubusercontent.com/qpdf/qpdf/4eba95899886e851cc41d76886483b347612f2a8/qpdf/qtest/qpdf/nested-form-xobjects-inline-images.pdf",
+        "git_blob": "e2aea58ebcb8717c2e9f7deb48b3f73788049796",
+        "sha256": "8a8c86f4d0cae7a43bd8d7280283b4671b392d6dd0d43486fd2c2b0de815725f",
+        "file_bytes": 2841,
+        "license": "Apache-2.0; project LICENSE/NOTICE, first-party regression fixtures; no separate per-file grant claimed",
+        "redistributed": false
+      }
+    ],
+    "license_url": "https://github.com/qpdf/qpdf/blob/4eba95899886e851cc41d76886483b347612f2a8/LICENSE.txt",
+    "notice_url": "https://github.com/qpdf/qpdf/blob/4eba95899886e851cc41d76886483b347612f2a8/NOTICE.md",
+    "test_driver": "https://github.com/qpdf/qpdf/blob/4eba95899886e851cc41d76886483b347612f2a8/qpdf/qtest/inline-images.test"
+  },
+  "reproduction": {
+    "tool_commit": "0343d06f7505381a126c4c5a29644056d204a234",
+    "tool_source_sha256": "9797ea14acb200f7ded37420da43e4ec4c279b7ccfded8546bb8c20461b1a3e5",
+    "pypdf_commit": "cf2dabb9bd14aebbb04e924d0c0e5737a938b97f",
+    "input_preparation": "Download the three manifest raw URLs under their names into a directory named fixtures; verify SHA256 and Git blob hashes before running. No PDFs redistributed.",
+    "command": "pdf-inline-audit fixtures --max-images 20000 --timeout 30 --output fresh-report.json",
+    "platforms_verified": [
+      "Windows CPython 3.12.14",
+      "Windows CPython 3.13.5"
+    ],
+    "cli_exit_status_each": 0,
+    "independently_rerun": true,
+    "reports_identical": true
+  },
+  "observations": [
+    "Three files, three pages, eleven definitions and invocations; all scans ok with zero unknown estimates.",
+    "Largest retained A85+Flate payload is 2134990 bytes; metadata-derived packed sample estimate is 2430000 bytes.",
+    "The same file has DCT payload1841bytes and estimated packed samples8232bytes.",
+    "One retained payload exceeds both4096and8192 exploratory thresholds. Earlier eight-file3996byte maximum is not a general bound.",
+    "Containing streams are decompressed before measurement; a retained inline payload can exceed compressed whole-file bytes.",
+    "Named Indexed lookup and nested Forms add a different upstream source of evidence; no new filter family claimed."
+  ],
+  "limitations": [
+    "Deliberately selected correlated upstream regression fixtures, including a hand-crafted stress case; not a random or representative real-world sample.",
+    "No decoded pixels, image rendering or memory measurements; metadata-derived estimates are not measured decoded sizes.",
+    "Parsing success is not PDF conformance verification or evidence for a safe hard limit.",
+    "The earlier eight-file corpus remains separate and was not rerun or counted as new evidence.",
+    "No maintainer acceptance, independent adoption or program eligibility is claimed.",
+    "Only Windows CPython3.12/3.13 verified; other operating systems not run."
+  ],
+  "report": {
+    "schema_version": 1,
+    "tool_version": "0.2.0",
+    "pypdf_version": "6.21.1",
+    "limits": {
+      "max_file_bytes": 52428800,
+      "max_pages": 2000,
+      "max_images": 20000,
+      "max_form_depth": 32,
+      "max_form_invocations": 5000
+    },
+    "timeout_seconds_per_file": 30,
+    "measurement_notes": [
+      "Sizes are parser-retained encoded inline payloads, not exact original byte spans.",
+      "Sample sizes are metadata-derived estimates with byte-aligned scanlines, not decoded measurements.",
+      "No threshold is a proposed policy or a PDF conformance verdict.",
+      "Unique definitions use per-page top-level streams and document-wide Form references plus operation index; repeated Form placements counted separately.",
+      "Only page content and invoked Form XObjects are traversed; annotation appearances, patterns and Type3 glyph programs are excluded.",
+      "Partial, skipped, encrypted, errored and timed-out inputs remain explicit in the report."
+    ],
+    "summary": {
+      "file_status_counts": {
+        "ok": 3
+      },
+      "unique_inline_definitions": 11,
+      "inline_invocations": 11,
+      "parsed_encoded_payload_bytes": {
+        "count": 11,
+        "minimum": 19,
+        "maximum": 2134990,
+        "p50_nearest_rank": 22,
+        "p95_nearest_rank": 2134990,
+        "greater_than_4096": 1,
+        "greater_than_8192": 1
+      },
+      "estimated_packed_sample_bytes": {
+        "count": 11,
+        "minimum": 64,
+        "maximum": 2430000,
+        "p50_nearest_rank": 225,
+        "p95_nearest_rank": 2430000,
+        "greater_than_4096": 3,
+        "greater_than_8192": 3
+      },
+      "unknown_sample_estimates": 0
+    },
+    "files": [
+      {
+        "status": "ok",
+        "file_bytes": 1176,
+        "sha256": "fe533848681512e8b843b1d07e6a77a0107d64a3584a0b1101cf18fcc28f3337",
+        "pages_total": 1,
+        "pages_scanned": 1,
+        "images": [
+          {
+            "stream": "page:1",
+            "operation_index": 7,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 164,
+            "estimated_packed_sample_bytes": 423,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/Fl"
+            ]
+          }
+        ],
+        "errors": [],
+        "source": "fixtures/inline-image-colorspace-lookup.pdf"
+      },
+      {
+        "status": "ok",
+        "file_bytes": 1744913,
+        "sha256": "7da28b9cb83805404c4c5e8a99184b062175f017a2fb40a2bae08aa3f9763d95",
+        "pages_total": 1,
+        "pages_scanned": 1,
+        "images": [
+          {
+            "stream": "page:1",
+            "operation_index": 2,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 2392,
+            "estimated_packed_sample_bytes": 8232,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/Fl"
+            ]
+          },
+          {
+            "stream": "page:1",
+            "operation_index": 6,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 2134990,
+            "estimated_packed_sample_bytes": 2430000,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/A85",
+              "/Fl"
+            ]
+          },
+          {
+            "stream": "page:1",
+            "operation_index": 10,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 1841,
+            "estimated_packed_sample_bytes": 8232,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/DCT"
+            ]
+          },
+          {
+            "stream": "page:1",
+            "operation_index": 14,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 28,
+            "estimated_packed_sample_bytes": 64,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/Fl"
+            ]
+          }
+        ],
+        "errors": [],
+        "source": "fixtures/large-inline-image.pdf"
+      },
+      {
+        "status": "ok",
+        "file_bytes": 2841,
+        "sha256": "8a8c86f4d0cae7a43bd8d7280283b4671b392d6dd0d43486fd2c2b0de815725f",
+        "pages_total": 1,
+        "pages_scanned": 1,
+        "images": [
+          {
+            "stream": "page:1",
+            "operation_index": 8,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 20,
+            "estimated_packed_sample_bytes": 225,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/Fl"
+            ]
+          },
+          {
+            "stream": "page:1",
+            "operation_index": 12,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 22,
+            "estimated_packed_sample_bytes": 225,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/Fl"
+            ]
+          },
+          {
+            "stream": "form:12:0",
+            "operation_index": 7,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 20,
+            "estimated_packed_sample_bytes": 225,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/Fl"
+            ]
+          },
+          {
+            "stream": "form:12:0",
+            "operation_index": 11,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 19,
+            "estimated_packed_sample_bytes": 225,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/Fl"
+            ]
+          },
+          {
+            "stream": "form:16:0",
+            "operation_index": 7,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 19,
+            "estimated_packed_sample_bytes": 225,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/Fl"
+            ]
+          },
+          {
+            "stream": "form:16:0",
+            "operation_index": 11,
+            "first_page": 1,
+            "invocations": 1,
+            "parsed_encoded_payload_bytes": 19,
+            "estimated_packed_sample_bytes": 225,
+            "estimate_unknown_reason": null,
+            "filters": [
+              "/Fl"
+            ]
+          }
+        ],
+        "errors": [],
+        "source": "fixtures/nested-form-xobjects-inline-images.pdf"
+      }
+    ]
+  }
+}

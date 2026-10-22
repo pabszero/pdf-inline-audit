@@ -50,8 +50,11 @@ one component per sample, regardless of the palette's base space. Other custom
 spaces (including ICCBased, Separation and DeviceN), missing names, and cyclic
 aliases remain explicitly unknown. Lookup is bounded to 32 steps and never
 reads image pixels or decodes profiles. See PDF 32000-1, sections 7.8.3 and 8.9.7
-([Adobe reference](https://opensource.adobe.com/dc-acrobat-sdk-docs/pdfstandards/PDF32000_2008.pdf)).
-DCT/JPX payloads are never treated as decoded rasters.
+([Adobe reference](https://opensource.adobe.com/dc-acrobat-sdk-docs/standards/pdfstandards/pdf/PDF32000_2008.pdf)).
+DCT payloads are never treated as decoded rasters. PDF 32000-1 sections 7.4.9
+and 8.9.7 prohibit JPXDecode and JBIG2Decode for inline images; JPX image XObjects
+are outside this tool's inline-image measurements. The tool is not a PDF
+conformance validator.
 
 Forms are traversed through actual `Do` instructions, including nested Forms.
 An indirect Form reused three times contributes one definition and three
@@ -127,10 +130,42 @@ payload distribution is unchanged. Reproduce it with `--max-images 20000`
 sample is claimed.
 
 One document contributes 13,591 definitions and dominates pooled percentiles.
-The JPX control contains an XObject and does
-not establish inline-JPX coverage. This convenience sample does not justify a
+The JPX control contains an XObject rather than an inline image.
+This convenience sample does not justify a
 universal hard limit or estimate ecosystem prevalence. No upstream review or
 acceptance is claimed.
+
+## Licensed QPDF regression corpus
+
+[`research/qpdf-inline-regressions.json`](research/qpdf-inline-regressions.json)
+adds three existing QPDF regression PDFs at commit
+`4eba95899886e851cc41d76886483b347612f2a8`. The manifest records pinned source
+links, Git blob and SHA256 hashes, and QPDF's Apache-2.0 project license and
+notice links. No PDF bytes are redistributed. These are deliberately chosen
+upstream test inputs, including a hand-crafted large-image case, rather than a
+representative real-world survey. Their hashes do not overlap the earlier eight.
+
+All three files completed: three pages, 11 inline definitions and no unknown
+sample estimates. Independent runs of published tool version 0.2.0 on Windows
+CPython 3.12 and 3.13 produced identical reports. One A85+Flate inline payload
+retains **2,134,990 bytes**, compared with **2,430,000 metadata-estimated packed
+sample bytes**. The same file has a DCT payload of 1,841 bytes with an 8,232-byte
+sample estimate. Neither estimate is a decoded-pixel or memory measurement.
+
+The large retained payload exceeds the earlier eight-file maximum of 3,996
+bytes. That earlier maximum cannot be generalized into a parser size limit.
+The containing stream is compressed, so a parser-retained payload can also
+exceed the whole PDF's on-disk size. This selection adds scale, named-resource
+and nested-Form evidence, without adding a new filter family or establishing
+prevalence, conformance, or a safe threshold. Reports remain separate rather
+than pooling correlated regression inputs into a purported population survey.
+
+To reproduce, download the three manifest URLs into a directory named
+`fixtures`, verify their recorded hashes, and run:
+
+```sh
+pdf-inline-audit fixtures --max-images 20000 --timeout 30 --output qpdf-report.json
+```
 
 ## Tests
 
