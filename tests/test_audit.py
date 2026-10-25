@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 from pypdf import PdfWriter
-from pypdf.generic import ArrayObject, BooleanObject, ByteStringObject, DecodedStreamObject, DictionaryObject, NameObject, NumberObject
+from pypdf.generic import ArrayObject, BooleanObject, ByteStringObject, DecodedStreamObject, DictionaryObject, NameObject, NullObject, NumberObject
 from pdf_inline_audit import Limits, distribution, isolated_scan, main, sample_estimate, scan_pdf
 
 def make_pdf(path, streams, form_data=None, recursive=False, color_spaces=None, form_color_spaces=None):
@@ -170,6 +170,36 @@ class TestAudit(unittest.TestCase):
         result = scan_pdf(path)
         assert result['status'] == 'ok'
         assert result['images'][0]['estimated_packed_sample_bytes'] == 12
+
+    def test_null_form_resources_match_absence_but_empty_dictionary_does_not(self):
+        source = make_pdf(self.tmp_path / 'source.pdf', [b'/Fm Do /Fm Do'],
+                          inline(b'00>', b'/W 1 /H 1 /BPC 8 /CS /Custom /F /AHx'),
+                          color_spaces=[{'/Custom': NameObject('/DeviceGray')}])
+        cases = [
+            ('absent', None, False, 1),
+            ('direct-null', NullObject(), False, 1),
+            ('indirect-null', NullObject(), True, 1),
+            ('empty-dictionary', DictionaryObject(), False, None),
+        ]
+        for name, resources, indirect, expected in cases:
+            with self.subTest(resources=name):
+                path = self.tmp_path / f'{name}.pdf'
+                writer = PdfWriter(clone_from=str(source))
+                form = writer.pages[0]['/Resources']['/XObject']['/Fm'].get_object()
+                if resources is not None:
+                    form[NameObject('/Resources')] = (
+                        writer._add_object(resources) if indirect else resources)
+                writer.write(path)
+                writer.close()
+                result = scan_pdf(path)
+                assert result['status'] == 'ok'
+                assert result['errors'] == []
+                assert len(result['images']) == 1
+                image = result['images'][0]
+                assert image['invocations'] == 2
+                assert image['estimated_packed_sample_bytes'] == expected
+                reason = 'unresolved_or_unsupported_color_space' if expected is None else None
+                assert image['estimate_unknown_reason'] == reason
 
     def test_reused_form_with_conflicting_inherited_colorspaces_is_unknown(self):
         path = make_pdf(self.tmp_path / 'context-dependent.pdf', [b'/Fm Do', b'/Fm Do'],
