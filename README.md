@@ -62,6 +62,11 @@ invocations. A Form's own resources take precedence over inherited page
 resources. If reuse under different inherited resources produces different
 estimates, the definition's estimate becomes unknown with reason
 `context_dependent_color_space`; invocation counting still includes every use.
+Version 0.2.1 treats a Form's direct or indirect `/Resources null` like an omitted
+entry, preserving the tool's existing legacy resource fallback. An explicitly
+empty dictionary remains empty. PDF 32000-1 sections 7.3.7 and 7.3.9 specify
+null-entry equivalence; section 7.8.3 describes legacy Form resource inheritance
+as obsolete. This compatibility handling is not a modern PDF conformance claim.
 Cycles, excessive nesting/invocations, page limits and image limits
 produce explicit partial results. Uninvoked resource entries are not scanned.
 Top-level content is keyed per page; a content stream shared between pages is
@@ -178,6 +183,7 @@ python -m unittest discover -s tests -v
 Synthetic PDF fixtures test parser-backed payload measurements, filter arrays,
 long-form keys, false-positive text strings, bit-packed rows, image masks, repeated
 Forms, recursion, indirect named color spaces, Form resource precedence,
+null-versus-empty Form resources,
 context-dependent reuse, cyclic aliases, unknown color spaces, corruption,
 encryption, scan limits,
 timeouts and the Windows-compatible spawn-based CLI.

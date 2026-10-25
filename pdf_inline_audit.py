@@ -15,9 +15,9 @@ from typing import Any
 
 import pypdf
 from pypdf import PdfReader
-from pypdf.generic import ContentStream, DictionaryObject
+from pypdf.generic import ContentStream, DictionaryObject, NullObject
 
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 
 
 @dataclass(frozen=True)
@@ -168,6 +168,8 @@ def scan_pdf(path: Path, limits: Limits = Limits()) -> dict[str, Any]:
                 nested_resources = form.get("/Resources", resources)
                 if hasattr(nested_resources, "get_object"):
                     nested_resources = nested_resources.get_object()
+                if isinstance(nested_resources, NullObject):
+                    nested_resources = resources
                 walk(form, nested_resources, form_label(form), page, depth + 1, active)
 
     try:
