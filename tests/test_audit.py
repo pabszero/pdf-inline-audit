@@ -171,6 +171,40 @@ class TestAudit(unittest.TestCase):
         assert result['status'] == 'ok'
         assert result['images'][0]['estimated_packed_sample_bytes'] == 12
 
+    def test_named_cie_spaces_resolve_indirect_resources_and_parameters(self):
+        for family, expected in [('/CalGray', 6), ('/CalRGB', 18), ('/Lab', 18)]:
+            with self.subTest(family=family):
+                params = DictionaryObject({NameObject('/WhitePoint'): ArrayObject([
+                    NumberObject(1), NumberObject(1), NumberObject(1)])})
+                space = ArrayObject([NameObject(family), params])
+                payload = b'00' * expected + b'>'
+                path = make_pdf(self.tmp_path / f'{family[1:]}.pdf',
+                                [inline(payload, b'/W 2 /H 3 /BPC 8 /CS /Alias /F /AHx')],
+                                color_spaces=[{'/Alias': NameObject('/CIE'), '/CIE': space}])
+                writer = PdfWriter(clone_from=str(path))
+                color = writer.pages[0]['/Resources']['/ColorSpace']['/CIE'].get_object()
+                color[1] = writer._add_object(color[1])
+                writer.write(path)
+                writer.close()
+                result = scan_pdf(path)
+                assert result['status'] == 'ok'
+                image = result['images'][0]
+                assert image['estimated_packed_sample_bytes'] == expected
+                assert image['estimate_unknown_reason'] is None
+                assert image['parsed_encoded_payload_bytes'] == len(payload)
+
+    def test_cie_row_padding_and_unsupported_descriptions(self):
+        for family, expected in [('/CalGray', 4), ('/CalRGB', 10), ('/Lab', 10)]:
+            with self.subTest(family=family):
+                assert sample_estimate({'/W': 3, '/H': 2, '/BPC': 4,
+                                        '/CS': '/CIE'},
+                                       {'/ColorSpace': {'/CIE': [family, {}]}}) == (expected, None)
+        for color in [[], ['/CalGray'], ['/CalRGB', None], ['/Lab', {}, {}],
+                      ['/ICCBased', {}], ['/Separation', {}], '/CalRGB']:
+            with self.subTest(color=color):
+                assert sample_estimate({'/W': 3, '/H': 2, '/BPC': 4, '/CS': color}) == (
+                    None, 'unresolved_or_unsupported_color_space')
+
     def test_null_form_resources_match_absence_but_empty_dictionary_does_not(self):
         source = make_pdf(self.tmp_path / 'source.pdf', [b'/Fm Do /Fm Do'],
                           inline(b'00>', b'/W 1 /H 1 /BPC 8 /CS /Custom /F /AHx'),

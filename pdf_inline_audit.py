@@ -17,7 +17,7 @@ import pypdf
 from pypdf import PdfReader
 from pypdf.generic import ContentStream, DictionaryObject, NullObject
 
-VERSION = "0.2.1"
+VERSION = "0.3.0"
 
 
 @dataclass(frozen=True)
@@ -34,14 +34,23 @@ class ScanLimit(Exception):
 
 
 def color_components(color: Any, resources: dict | None = None) -> int | None:
-    """Resolve known device/Indexed spaces, without decoding profiles or pixels."""
+    """Resolve known component counts without decoding profiles or pixels."""
     spaces = None
     seen = set()
     for _ in range(32):
         if hasattr(color, "get_object"):
             color = color.get_object()
         if isinstance(color, list):
-            return 1 if color and str(color[0]) in ("/I", "/Indexed") else None
+            if color and str(color[0]) in ("/I", "/Indexed"):
+                return 1
+            if len(color) != 2:
+                return None
+            parameters = color[1]
+            if hasattr(parameters, "get_object"):
+                parameters = parameters.get_object()
+            if not isinstance(parameters, dict):
+                return None
+            return {"/CalGray": 1, "/CalRGB": 3, "/Lab": 3}.get(str(color[0]))
         if not isinstance(color, str):
             return None
         channels = {
