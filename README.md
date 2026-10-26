@@ -46,10 +46,14 @@ helpers may discard or retain some delimiter whitespace. The second field is
 **not measured decoded pixels**, not an extracted PNG/JPEG file size, and not
 allocated image memory. Device and Indexed color spaces can be resolved directly
 or by name in the current page/Form `/Resources` dictionary. Indexed images use
-one component per sample, regardless of the palette's base space. Other custom
-spaces (including ICCBased, Separation and DeviceN), missing names, and cyclic
+one component per sample, regardless of the palette's base space. Version 0.3.0
+also resolves named CalGray (one component), CalRGB and Lab (three components)
+resources, including indirect parameter dictionaries. Only the family and
+dictionary shape are inspected; colour conversion parameters are not validated.
+Other custom spaces (including ICCBased, Separation and DeviceN), missing names, and cyclic
 aliases remain explicitly unknown. Lookup is bounded to 32 steps and never
-reads image pixels or decodes profiles. See PDF 32000-1, sections 7.8.3 and 8.9.7
+reads image pixels or decodes profiles. See PDF 32000-1, sections 7.8.3,
+8.6.5.2–8.6.5.4 and 8.9.7
 ([Adobe reference](https://opensource.adobe.com/dc-acrobat-sdk-docs/standards/pdfstandards/pdf/PDF32000_2008.pdf)).
 DCT payloads are never treated as decoded rasters. PDF 32000-1 sections 7.4.9
 and 8.9.7 prohibit JPXDecode and JBIG2Decode for inline images; JPX image XObjects
